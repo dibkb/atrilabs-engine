@@ -105,17 +105,17 @@ const HintOverlayBox: React.FC<HintOverlay & { scale: number }> = (props) => {
     const width = box.dimension.width / props.scale;
     const height = box.dimension.height / props.scale;
     // calculate access
-    const topAccess = top < 0 ? Math.abs(top) : 0;
-    const leftAccess = left < 0 ? Math.abs(left) : 0;
-    let rightAccess = 0;
+    const topExcess = top < 0 ? Math.abs(top) : 0;
+    const leftExcess = left < 0 ? Math.abs(left) : 0;
+    let rightExcess = 0;
     if (left + width > bodyCoords.width) {
-      rightAccess = left + width - bodyCoords.width;
+      rightExcess = left + width - bodyCoords.width;
     }
     return {
-      top: top + topAccess,
-      left: rightAccess > 0 ? left - rightAccess : left + leftAccess,
+      top: top + topExcess,
+      left: rightExcess > 0 ? left - rightExcess : left + leftExcess,
       width: width,
-      height: height - topAccess > 0 ? height - topAccess : height,
+      height: height - topExcess > 0 ? height - topExcess : height,
     };
   }, [box, bodyCoords, compCoords, props.scale]);
 
